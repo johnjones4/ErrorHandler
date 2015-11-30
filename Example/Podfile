@@ -1,0 +1,13 @@
+source 'https://github.com/CocoaPods/Specs.git'
+use_frameworks!
+
+target 'ErrorHandler_Example', :exclusive => true do
+  pod "ErrorHandler", :path => "../"
+end
+
+target 'ErrorHandler_Tests', :exclusive => true do
+  pod "ErrorHandler", :path => "../"
+
+  pod 'Specta'
+  pod 'Expecta'
+end
