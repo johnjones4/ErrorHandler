@@ -7,6 +7,7 @@
 //
 
 #import "EHViewController.h"
+#import "ErrorHandler.h"
 
 @interface EHViewController ()
 
@@ -14,16 +15,19 @@
 
 @implementation EHViewController
 
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
-	// Do any additional setup after loading the view, typically from a nib.
+- (IBAction)causeError:(id)sender {
+    NSError* error = [[NSError alloc] initWithDomain:@"test" code:123 userInfo:@{NSLocalizedDescriptionKey: @"test description"}];
+    [[ErrorHandler defaultHandler] logError:error];
+    NSLog(@"Error Logged");
 }
 
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+- (IBAction)causeException:(id)sender {
+    @try {
+        [NSException raise:@"Test Exception" format:@"Test Reason"];
+    }
+    @catch (NSException *exception) {
+        [[ErrorHandler defaultHandler] logException:exception];
+        NSLog(@"Exception Logged");
+    }
 }
-
 @end

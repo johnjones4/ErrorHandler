@@ -10,4 +10,7 @@
 
 @interface EHViewController : UIViewController
 
+- (IBAction)causeError:(id)sender;
+- (IBAction)causeException:(id)sender;
+
 @end
